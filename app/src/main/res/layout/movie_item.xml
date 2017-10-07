@@ -1,0 +1,9 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="210dp"
+        android:layout_height="315dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/movie_image"
+        android:contentDescription="@string/movie_image_desc"/>
+</FrameLayout>

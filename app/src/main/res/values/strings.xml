@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+    <string name="movie_image_desc">Movie Poster Image</string>
+    <string name="sort_by_popularity">most popular</string>
+    <string name="sort_by_rating">top rated</string>
+    <string name="error_message">
+        An error has occurred. Please try again by selecting movie category.
+    </string>
+    <string name="user_rating">%2.1f/10</string>
+    <string name="popular_movies_url">/movie/popular</string>
+    <string name="top_rated_movies_url">/movie/top_rated</string>
+    <string name="movies_json_array_name">results</string>
+    <string name="original_title">original_title</string>
+    <string name="image_base_url">http://image.tmdb.org/t/p/</string>
+    <string name="image_size">w185</string>
+    <string name="poster_path">poster_path</string>
+    <string name="overview">overview</string>
+    <string name="vote_average">vote_average</string>
+    <string name="release_date">release_date</string>
+    <string name="date_format">yyyy-MM-dd</string>
+    <string name="movies_base_url">https://api.themoviedb.org/3</string>
+    <string name="api_key_parameter">api_key</string>
+    <string name="response_delimiter">\\\\A</string>
+
+    <!--ENTER API KEY HERE-->
+    <string name="api_key">ENTER API KEY HERE</string>
+
+</resources>
