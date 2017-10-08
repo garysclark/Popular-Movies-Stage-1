@@ -41,7 +41,7 @@ public class MovieDbRepositorySettings implements MovieDbRepository.Settings{
         mReleaseDateTag = context.getString(R.string.release_date);
         mDateFormat = context.getString(R.string.date_format);
         mMovieBaseUrl = context.getString(R.string.movies_base_url);
-        mApiKey = context.getString(R.string.api_key);
+        mApiKey = BuildConfig.API_KEY;
         mApiKeyParameter = context.getString(R.string.api_key_parameter);
         mResponseDelimiter = context.getString(R.string.response_delimiter);
     }

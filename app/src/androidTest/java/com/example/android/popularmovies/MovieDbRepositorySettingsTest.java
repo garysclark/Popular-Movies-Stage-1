@@ -56,7 +56,7 @@ public class MovieDbRepositorySettingsTest {
                 getContextString(R.string.movies_base_url));
         assertEquals("setting incorrect",
                 repositorySettings.getApiKey(),
-                getContextString(R.string.api_key));
+                BuildConfig.API_KEY);
         assertEquals("setting incorrect",
                 repositorySettings.getApiKeyParameter(),
                 getContextString(R.string.api_key_parameter));
