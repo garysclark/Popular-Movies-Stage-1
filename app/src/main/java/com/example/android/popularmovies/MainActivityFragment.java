@@ -16,6 +16,8 @@ import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.android.utilities.NetworkUtils;
+
 import java.util.List;
 
 /**
@@ -133,8 +135,12 @@ public class MainActivityFragment extends Fragment implements MovieAdapter.Movie
     }
 
     private void loadMovies(int itemId) {
-        showMovieGridView();
-        new FetchMoviesTask().execute(itemId);
+        if(NetworkUtils.isOnline(getActivity())){
+            showMovieGridView();
+            new FetchMoviesTask().execute(itemId);
+        }else{
+            showErrorMessage();
+        }
     }
 
     private class FetchMoviesTask extends AsyncTask<Integer, Void, List<MovieData>>{
