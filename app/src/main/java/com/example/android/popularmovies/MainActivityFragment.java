@@ -3,7 +3,6 @@ package com.example.android.popularmovies;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -16,6 +15,7 @@ import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.android.utilities.AsyncTaskListener;
 import com.example.android.utilities.NetworkUtils;
 
 import java.util.List;
@@ -137,40 +137,20 @@ public class MainActivityFragment extends Fragment implements MovieAdapter.Movie
     private void loadMovies(int itemId) {
         if(NetworkUtils.isOnline(getActivity())){
             showMovieGridView();
-            new FetchMoviesTask().execute(itemId);
+            new FetchMoviesTask(new FetchMoviesTaskListener()).execute(itemId);
         }else{
             showErrorMessage();
         }
     }
 
-    private class FetchMoviesTask extends AsyncTask<Integer, Void, List<MovieData>>{
+    private class FetchMoviesTaskListener implements AsyncTaskListener<List<MovieData>> {
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
+        public void onTaskPreExecute() {
             mLoadingIndicator.setVisibility(View.VISIBLE);
         }
 
         @Override
-        protected List<MovieData> doInBackground(Integer... params) {
-            if (params.length == 0){
-                return null;
-            }
-
-            if (params[0] == R.id.action_sort_popular){
-                MovieDbRepository.getInstance().loadPopularMovies();
-                return MovieDbRepository.getInstance().getMovies();
-            }
-
-            if (params[0] == R.id.action_sort_rating){
-                MovieDbRepository.getInstance().loadTopRatedMovies();
-                return MovieDbRepository.getInstance().getMovies();
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(List<MovieData> movieDataList) {
+        public void onTaskPostExecute(List<MovieData> movieDataList) {
             mLoadingIndicator.setVisibility(View.INVISIBLE);
             if (movieDataList != null){
                 mGridView.setAdapter(new MovieAdapter(getActivity(), movieDataList, MainActivityFragment.this));
