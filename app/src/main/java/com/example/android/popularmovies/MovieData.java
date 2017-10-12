@@ -1,5 +1,8 @@
 package com.example.android.popularmovies;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
 /**
@@ -7,50 +10,86 @@ import java.util.Date;
  * Created by Gary on 9/17/2017.
  */
 
-class MovieData {
+class MovieData implements Parcelable{
     private String mOriginalTitle;
     private String mPosterImage;
     private String mPlotSynopsis;
     private double mUserRating = -1.0;
     private Date mReleaseDate;
 
-    public void setOriginalTitle(String originalTitle) {
+    MovieData(){}
+
+    private MovieData(Parcel in){
+        mOriginalTitle = in.readString();
+        mPosterImage = in.readString();
+        mPlotSynopsis = in.readString();
+        mUserRating = in.readDouble();
+        mReleaseDate = new Date(in.readLong());
+    }
+
+    void setOriginalTitle(String originalTitle) {
         mOriginalTitle = originalTitle;
     }
 
-    public String getOriginalTitle() {
+    String getOriginalTitle() {
         return mOriginalTitle;
     }
 
-    public String getPosterImage() {
+    String getPosterImage() {
         return mPosterImage;
     }
 
-    public void setPosterImage(String posterImage) {
+    void setPosterImage(String posterImage) {
         mPosterImage = posterImage;
     }
 
-    public String getPlotSynopsis() {
+    String getPlotSynopsis() {
         return mPlotSynopsis;
     }
 
-    public void setPlotSynopsis(String plotSynopsis) {
+    void setPlotSynopsis(String plotSynopsis) {
         mPlotSynopsis = plotSynopsis;
     }
 
-    public double getUserRating() {
+    double getUserRating() {
         return mUserRating;
     }
 
-    public void setUserRating(double userRating) {
+    void setUserRating(double userRating) {
         mUserRating = userRating;
     }
 
-    public Date getReleaseDate() {
+    Date getReleaseDate() {
         return mReleaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    void setReleaseDate(Date releaseDate) {
         mReleaseDate = releaseDate;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(mOriginalTitle);
+        parcel.writeString(mPosterImage);
+        parcel.writeString(mPlotSynopsis);
+        parcel.writeDouble(mUserRating);
+        parcel.writeLong(mReleaseDate.getTime());
+    }
+    public static final Parcelable.Creator<MovieData> CREATOR = new Parcelable.Creator<MovieData>() {
+        @Override
+        public MovieData createFromParcel(Parcel source) {
+            return new MovieData(source);
+        }
+
+        @Override
+        public MovieData[] newArray(int size) {
+            return new MovieData[size];
+        }
+    };
+
 }

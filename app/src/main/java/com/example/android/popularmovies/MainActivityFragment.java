@@ -110,7 +110,7 @@ public class MainActivityFragment extends Fragment implements MovieAdapter.Movie
         Context context = getActivity();
         Class destinationClass = DetailActivity.class;
         Intent intentToStartDetailActivity = new Intent(context, destinationClass);
-        intentToStartDetailActivity.putExtra(Intent.EXTRA_TEXT, position);
+        intentToStartDetailActivity.putExtra(getString(R.string.extra_movie_data), MovieDbRepository.getInstance().getMovie(position));
         startActivity(intentToStartDetailActivity);
     }
 

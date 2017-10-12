@@ -28,10 +28,11 @@ public class DetailActivity extends AppCompatActivity {
         Intent intentThatStartedThisActivity = getIntent();
 
         if (intentThatStartedThisActivity != null) {
-            if (intentThatStartedThisActivity.hasExtra(Intent.EXTRA_TEXT)) {
-                int movieIndex = intentThatStartedThisActivity.getIntExtra(Intent.EXTRA_TEXT, -1);
-                if (movieIndex >= 0) {
-                    setView(MovieDbRepository.getInstance().getMovie(movieIndex));
+            if (intentThatStartedThisActivity.hasExtra(getString(R.string.extra_movie_data))) {
+                Bundle bundle = intentThatStartedThisActivity.getExtras();
+                MovieData movieData = bundle.getParcelable(getString(R.string.extra_movie_data));
+                if (movieData != null) {
+                    setView(movieData);
                 }
             }
         }

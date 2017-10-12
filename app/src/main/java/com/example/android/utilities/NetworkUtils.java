@@ -31,7 +31,6 @@ import java.util.Scanner;
 /**
  */
 public final class NetworkUtils {
-// TODO: Get strings from resources
     private static final String TAG = NetworkUtils.class.getSimpleName();
 
     /**

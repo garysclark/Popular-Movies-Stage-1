@@ -21,4 +21,5 @@
     <string name="movies_base_url">https://api.themoviedb.org/3</string>
     <string name="api_key_parameter">api_key</string>
     <string name="response_delimiter">\\\\A</string>
+    <string name="extra_movie_data">MovieData</string>
 </resources>
